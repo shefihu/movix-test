@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import logo from "../../assets/icons/logo.png";
 const Register = () => {
@@ -16,6 +16,7 @@ const Register = () => {
     fullName: Yup.string().required("Full Name is required"),
   });
   const [loading, setLoading] = useState();
+  const navigate = useNavigate();
   return (
     <div>
       <div className="w-full lg:flex hidden justify-center items-center h-screen ">
@@ -99,6 +100,7 @@ const Register = () => {
                   {!loading ? (
                     <button
                       type="submit"
+                      onClick={() => navigate("/home")}
                       className="w-full h-[51px] bg-black text-white rounded-lg auth_button text-[15px] font-[500]"
                     >
                       REGISTER
