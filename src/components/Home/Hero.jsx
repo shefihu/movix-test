@@ -1,49 +1,10 @@
 import React, { useEffect, useState } from "react";
-import poster from "../../assets/images/Poster.png";
-import avatar from "../../assets/images/avatar.jpg";
+
 import imdb from "../../assets/icons/imdb.png";
 import tomatoes from "../../assets/icons/tomatoes.png";
 import play from "../../assets/icons/play.png";
 import { motion } from "framer-motion";
-const Hero = () => {
-  const data = [
-    {
-      id: 1,
-      name: "Avatar: Way of the water",
-      imdb: "9.0 / 10",
-      tomatoes: "87%",
-      description:
-        " Avatar is on the run after killing a member of the international assassins guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.",
-      img: avatar,
-    },
-    {
-      id: 2,
-      name: "A  John Wick 3 : Parabellum",
-      imdb: "90.0 / 100",
-      tomatoes: "97%",
-      description:
-        " John wick is on the run after killing a member of the international assassins guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.",
-      img: poster,
-    },
-    {
-      id: 3,
-      name: "Spiderman: No way home",
-      imdb: "90.0 / 100",
-      tomatoes: "97%",
-      description:
-        " Spider wick is on the run after killing a member of the international assassins guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.",
-      img: poster,
-    },
-    {
-      id: 4,
-      name: "Flash: Way of the water",
-      imdb: "90.0 / 100",
-      tomatoes: "97%",
-      description:
-        " John  is on the run after killing a member of the international assassins guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.",
-      img: poster,
-    },
-  ];
+const Hero = ({ data }) => {
   const [index, setIndex] = useState(0);
   const movie = data[index];
   const setLimit = (number) => {
@@ -58,7 +19,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex(setLimit(index + 1));
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [index]);
   const variants = {
@@ -134,7 +95,7 @@ const Hero = () => {
               </button>
             </div>
             <div className="absolute right-4  w-10 h-[110px]  top-[245px]">
-              {data.map((x, i) => {
+              {data.slice(0, 4).map((x, i) => {
                 let active;
                 let activeText;
                 if (i === index) {
@@ -142,7 +103,10 @@ const Hero = () => {
                   activeText = "activeText";
                 }
                 return (
-                  <div className="flex transition-all justify-between relative items-center">
+                  <div
+                    key={i}
+                    className="flex transition-all justify-between relative items-center"
+                  >
                     {active && (
                       <div className="w-[20px]  absolute duration-300 ease-in -left-7 h-[2px] bg-white "></div>
                     )}
