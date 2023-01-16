@@ -27,16 +27,24 @@ const Thumnail = ({ movie, unique_name }) => {
             </div>
           </div>
           <div className="w-full absolute bottom-0 mt-[12px]">
-            <h6 className="text-[#9CA3AF] font-bold text-[12px]">USA, 2005</h6>
-            <h4 className="text-[18px] font-bold mt-[12px]">{movie.name}</h4>
+            <h6 className="text-[#9CA3AF] font-bold text-[12px]">
+              {movie.release_date}
+            </h6>
+            <h4 className="text-[18px] font-bold mt-[12px] truncate">
+              {movie.title}
+            </h4>
             <div className="w-full  flex justify-between mt-[18px] h-[17px]">
               <div className="w-[101px] text-black  justify-between h-full flex">
                 <img src={imdb} alt="" />
-                <p className="text-[12px]">{movie.imdb}</p>
+                <p className="text-[12px]">
+                  {Number(movie.vote_average).toFixed(1)} / 10
+                </p>
               </div>
               <div className="w-[49px] text-black  justify-between h-full flex">
                 <img src={tomatoes} alt="" />
-                <p className="text-[12px]">{movie.tomatoes}</p>
+                <p className="text-[12px]">
+                  {Number(movie.vote_average).toFixed(1)}%
+                </p>
               </div>
             </div>
             <div className="mt-[12px]">
