@@ -6,7 +6,12 @@ import poster from "../assets/images/Poster.png";
 import avatar from "../assets/images/avatar.jpg";
 import Footer from "../layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovieData } from "../redux/movieSlice";
+import {
+  fetchCasts,
+  fetchExclusive,
+  fetchLatest,
+  fetchMovieData,
+} from "../redux/movieSlice";
 const Homepage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,6 +22,9 @@ const Homepage = () => {
   });
   useEffect(() => {
     dispatch(fetchMovieData());
+    dispatch(fetchLatest());
+    dispatch(fetchExclusive());
+    dispatch(fetchCasts());
   }, [dispatch]);
   const data = [
     {
@@ -74,20 +82,25 @@ const Homepage = () => {
       img: poster,
     },
   ];
-  const { loading, error, featured } = useSelector((state) => state.movies);
-  console.log(loading);
+  const { loading, error, featured, latest, exclusive, cast } = useSelector(
+    (state) => state.movies
+  );
   return (
     <div>
       <Navbar />
-      <Hero data={data} />
+      <Hero data={featured} />
       <MovieRows
         title="Featured Movies"
         unique_name="poster"
         movies={featured}
       />
-      <MovieRows title="New Arrival" unique_name="poster" movies={data} />
-      <MovieRows title="Exclusive videos" unique_name="video" movies={data} />
-      <MovieRows title="Featured Casts" unique_name="casts" movies={data} />
+      <MovieRows title="New Arrival" unique_name="poster" movies={latest} />
+      <MovieRows
+        title="Exclusive videos"
+        unique_name="video"
+        movies={exclusive}
+      />
+      <MovieRows title="Featured Casts" unique_name="casts" movies={cast} />
       <Footer />
     </div>
   );

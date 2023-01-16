@@ -54,7 +54,7 @@ const MovieRows = ({ title, movies, unique_name }) => {
               className="w-full mt-[44px] flex scrollbar-hide items-center   overflow-x-scroll space-x-[60px]"
               ref={rowRef}
             >
-              {movies?.map((movie) => {
+              {movies?.slice(0, 20)?.map((movie) => {
                 return (
                   <div key={movie.id}>
                     <Thumnail movie={movie} unique_name={unique_name} />

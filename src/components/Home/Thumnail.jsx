@@ -51,14 +51,14 @@ const Thumnail = ({ movie, unique_name }) => {
         <div className="min-w-[450px] poster_text relative h-[288.13px] ">
           <div className="absolute w-full h-[253.13px] ">
             <img
-              src={movie.img}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt=""
               className="w-full h-full object-cover"
             />
           </div>
 
           <div className="w-full absolute bottom-0 mt-[12px]">
-            <h4 className="text-[18px] font-bold mt-[12px]">{movie.name}</h4>
+            <h4 className="text-[18px] font-bold mt-[12px]">{movie.title}</h4>
           </div>
         </div>
       )}
@@ -66,7 +66,7 @@ const Thumnail = ({ movie, unique_name }) => {
         <div className="min-w-[250px] poster_text relative h-[405px] ">
           <div className="absolute w-full h-[370px] ">
             <img
-              src={movie.img}
+              src={`https://image.tmdb.org/t/p/w500${movie.profile_path}`}
               alt=""
               className="w-full h-full object-cover"
             />
