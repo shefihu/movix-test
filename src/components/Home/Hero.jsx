@@ -20,7 +20,7 @@ const Hero = ({ data }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex(setLimit(index + 1));
-    }, 10000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [index]);
   const variants = {
@@ -133,4 +133,3 @@ const Hero = ({ data }) => {
 };
 
 export default Hero;
-

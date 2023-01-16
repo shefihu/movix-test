@@ -93,14 +93,26 @@ const Homepage = () => {
         title="Featured Movies"
         unique_name="poster"
         movies={featured}
+        loading={loading}
       />
-      <MovieRows title="New Arrival" unique_name="poster" movies={latest} />
+      <MovieRows
+        title="New Arrival"
+        unique_name="poster"
+        movies={latest}
+        loading={loading}
+      />
       <MovieRows
         title="Exclusive videos"
         unique_name="video"
         movies={exclusive}
+        loading={loading}
       />
-      <MovieRows title="Featured Casts" unique_name="casts" movies={cast} />
+      <MovieRows
+        title="Featured Casts"
+        unique_name="casts"
+        movies={cast}
+        loading={loading}
+      />
       <Footer />
     </div>
   );
