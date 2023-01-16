@@ -88,7 +88,7 @@ const Homepage = () => {
   return (
     <div>
       <Navbar />
-      <Hero data={featured} />
+      <Hero data={data} />
       <MovieRows
         title="Featured Movies"
         unique_name="poster"
