@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-
+import { baseUrl } from "../../constants/movie";
 import imdb from "../../assets/icons/imdb.png";
 import tomatoes from "../../assets/icons/tomatoes.png";
 import play from "../../assets/icons/play.png";
 import { motion } from "framer-motion";
 const Hero = ({ data }) => {
   const [index, setIndex] = useState(0);
-  const movie = data[index];
+  const first = data?.slice(0, 4);
+  const movie = first[index];
   const setLimit = (number) => {
-    if (number > data.length - 1) {
+    if (number > first?.length - 1) {
       number = 0;
     }
     if (number < 0) {
-      number = data.length - 1;
+      number = first?.length - 1;
     }
     return number;
   };
@@ -41,7 +42,7 @@ const Hero = ({ data }) => {
               variants={variants}
               initial={"notMove"}
               animate={"moves"}
-              src={movie.img}
+              src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
               alt=""
               className="w-full h-full object-cover"
             />
@@ -57,7 +58,7 @@ const Hero = ({ data }) => {
                 animate={"moves"}
                 className="text-[48px]  leading-[56px] font-bold text-white"
               >
-                {movie.name}
+                {movie?.title}
               </motion.h1>
               <div className="w-[184px]  flex justify-between h-[17px]">
                 <motion.div
@@ -67,7 +68,7 @@ const Hero = ({ data }) => {
                   className="w-[101px] text-white  justify-between h-full flex"
                 >
                   <img src={imdb} alt="" />
-                  <p className="text-[12px]">{movie.imdb}</p>
+                  <p className="text-[12px]">{movie?.vote_average} / 10</p>
                 </motion.div>
                 <motion.div
                   variants={variants}
@@ -76,7 +77,7 @@ const Hero = ({ data }) => {
                   className="w-[49px] text-white  justify-between h-full flex"
                 >
                   <img src={tomatoes} alt="" />
-                  <p className="text-[12px]">{movie.tomatoes}</p>
+                  <p className="text-[12px]">{movie?.vote_count}</p>
                 </motion.div>
               </div>
               <div className="w-[302px]">
@@ -86,7 +87,7 @@ const Hero = ({ data }) => {
                   animate={"moves"}
                   className="font-[500] text-[14px] leading-[18px] text-white"
                 >
-                  {movie.description}
+                  {movie?.overview}
                 </motion.p>
               </div>
               <button className="w-[169px] h-[36px] space-x-[10px] justify-center items-center text-white flex bg-[#BE123C] rounded-[6px]">
@@ -95,7 +96,7 @@ const Hero = ({ data }) => {
               </button>
             </div>
             <div className="absolute right-4  w-10 h-[110px]  top-[245px]">
-              {data.slice(0, 4).map((x, i) => {
+              {data?.slice(0, 4)?.map((x, i) => {
                 let active;
                 let activeText;
                 if (i === index) {
@@ -132,3 +133,4 @@ const Hero = ({ data }) => {
 };
 
 export default Hero;
+
